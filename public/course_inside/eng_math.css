@@ -1,0 +1,256 @@
+:root {
+    --primary-color: #4e73df;
+    --secondary-color: #1cc88a;
+    --background: #f2f2f2;
+    --text-dark: #333;
+    --text-light: #f8f9fc;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', system-ui, sans-serif;
+    background: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 clamp(0.5rem, 4vw, 1.5rem);
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    padding: clamp(1rem, 4vw, 1.5rem);
+    text-align: center;
+    border-radius: 0.625rem;
+    box-shadow: var(--shadow-md);
+    margin: 1rem auto;
+    width: min(100%, 60rem);
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.8rem, 2vw, 1.5rem);
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem clamp(0.8rem, 1.5vw, 1rem);
+    border-radius: 0.3125rem;
+    transition: background-color 0.3s;
+    font-size: clamp(0.8rem, 1vw, 0.9rem);
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+main {
+    flex: 1;
+    padding: 1rem 0;
+}
+
+/* Chemistry Section */
+.Engineering_Mathmatics-section {
+    margin-bottom: 1rem;
+    background: white;
+    border-radius: 0.625rem;
+    padding: 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+.section-title {
+    color: var(--primary-color);
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Layout */
+.course-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.course-image-container {
+    position: relative;
+    width: 48%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 0.625rem;
+    box-shadow: var(--shadow-md);
+}
+
+.course-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);
+    transition: filter 0.3s ease;
+}
+
+/* .course-image-container:hover .course-image {
+    filter: blur(0);
+} */
+
+.lock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lock-text {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.course-description {
+    width: 48%;
+    padding: 1rem;
+    background-color: var(--background);
+    border-radius: 0.625rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.course-description h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.course-description p {
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+/* Enroll Button */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.subscribe-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    text-decoration: none; /* Ensure no underline for anchor */
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    display: inline-block;
+    text-align: center;
+}
+
+
+.subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(78, 115, 223, 0.3);
+}
+
+.subscribe-btn:active {
+    transform: translateY(1px);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    text-align: center;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin-top: auto;
+    border-radius: 0.625rem;
+    box-shadow: var(--shadow-md);
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    width: min(100%, 60rem);
+    margin: 1rem auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 0 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    header {
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    .course-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .course-image-container,
+    .course-description {
+        width: 100%;
+    }
+
+    .button-container {
+        margin-top: 1rem;
+        justify-content: center;
+    }
+
+    .subscribe-btn {
+        padding: 0.7rem 1.8rem;
+        font-size: 0.9rem;
+    }
+
+    .course-description h3 {
+        font-size: 1.3rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+}

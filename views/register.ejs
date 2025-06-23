@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | AspireLearn</title>
+  <link rel="stylesheet" href="/register.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Registration</h2>
+
+    <% if (message) { %>
+      <div class="message <%= message.type %>">
+        <p><%= message.text %></p>
+      </div>
+    <% } %>
+
+    <form id="registerForm" action="/main/login/register" method="POST">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Enter full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter email address" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select id="country" name="country" required>
+          <option value="">Select country</option>
+          <option value="India">India</option>
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
+          <option value="UK">UK</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="postalCode">Postal Code</label>
+        <input type="text" id="postalCode" name="postalCode" placeholder="Enter postal code" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Create Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter strong password" required>
+
+        <div class="password-strength">
+          <span class="strength-text">Password must include at least:</span>
+          <ul>
+            <li id="length" class="invalid">8 characters</li>
+            <li id="number" class="invalid">1 number</li>
+            <li id="uppercase" class="invalid">1 uppercase letter</li>
+            <li id="special" class="invalid">1 special character (!@#$...)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="/main/login">Login here</a></p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirmPassword");
+
+      const length = document.getElementById("length");
+      const number = document.getElementById("number");
+      const uppercase = document.getElementById("uppercase");
+      const special = document.getElementById("special");
+
+      password.addEventListener("input", () => {
+        const val = password.value;
+
+        length.classList.toggle("valid", val.length >= 8);
+        number.classList.toggle("valid", /\d/.test(val));
+        uppercase.classList.toggle("valid", /[A-Z]/.test(val));
+        special.classList.toggle("valid", /[!@#$%^&*(),.?":{}|<>]/.test(val));
+
+        length.classList.toggle("invalid", val.length < 8);
+        number.classList.toggle("invalid", !/\d/.test(val));
+        uppercase.classList.toggle("invalid", !/[A-Z]/.test(val));
+        special.classList.toggle("invalid", !/[!@#$%^&*(),.?":{}|<>]/.test(val));
+      });
+
+      document.getElementById("registerForm").addEventListener("submit", function (e) {
+        if (password.value !== confirmPassword.value) {
+          e.preventDefault();
+          alert("Passwords do not match.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

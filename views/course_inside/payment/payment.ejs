@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mock Payment | AspireLearn</title>
+    <link rel="stylesheet" href="/course_inside/payment/payment.css" />
+</head>
+<body>
+    <header>
+        <h1>Welcome to AspireLearn</h1>
+        <nav>
+             <ul>
+                <li><a href="http://localhost:8080/main/login/home">Home</a></li>
+                <li><a href="http://localhost:8080/main/login/course">Courses</a></li>
+                <li><a href="http://localhost:8080/main/login/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="payment-content">
+        <h2>Course Payment</h2>
+        <p>Amount: <strong>₹1500</strong></p>
+
+        <form id="paymentForm" class="payment-form">
+            <fieldset class="card-section">
+                <legend>Pay via Card</legend>
+
+                <label for="cardNumber">Card Number</label>
+                <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" />
+                <span id="card-type"></span>
+
+                <label for="expiry">Expiry Date</label>
+                <input type="month" id="expiry" />
+
+                <label for="cvv">CVV</label>
+                <input type="password" id="cvv" maxlength="4" />
+            </fieldset>
+
+            <div class="separator">OR</div>
+
+            <fieldset class="upi-payment">
+                <legend>Pay via UPI</legend>
+                <input type="text" id="upiId" placeholder="example@upi" />
+            </fieldset>
+
+            <div class="payment-button">
+                <button type="submit" class="pay-btn">Pay ₹1500</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 AspireLearn | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const cardInput = document.getElementById("cardNumber");
+        const cardTypeDisplay = document.getElementById("card-type");
+
+        cardInput.addEventListener("input", () => {
+            const number = cardInput.value.replace(/\s+/g, '');
+            let cardType = "";
+
+            if (/^4/.test(number)) {
+                cardType = "Visa";
+            } else if (/^5[1-5]/.test(number)) {
+                cardType = "MasterCard";
+            } else if (/^6/.test(number)) {
+                cardType = "RuPay";
+            }
+
+            cardTypeDisplay.textContent = cardType ? `Card Type: ${cardType}` : "";
+        });
+
+        document.getElementById("paymentForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const cardNumber = cardInput.value.trim();
+            const expiry = document.getElementById("expiry").value;
+            const cvv = document.getElementById("cvv").value;
+            const upiId = document.getElementById("upiId").value.trim();
+
+            const isCardFilled = cardNumber && expiry && cvv;
+            const isUpiFilled = upiId;
+
+            if (!isCardFilled && !isUpiFilled) {
+                alert("Please enter either Card details or UPI ID.");
+                return;
+            }
+
+            alert("Payment Successful! Thank you for your ₹1500 payment.");
+            this.reset();
+            cardTypeDisplay.textContent = "";
+        });
+    </script>
+</body>
+</html>

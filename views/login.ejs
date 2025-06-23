@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | AspireLearn</title>
+  <link rel="stylesheet" href="/login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <form id="loginForm" action="/main/login" method="POST">
+    <h3>Login Here</h3>
+
+    <!-- Email Field -->
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Email" required>
+
+    <!-- Password Field -->
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+
+    <!-- Login Button -->
+    <button type="submit">Log In</button>
+
+    <!-- Register Button -->
+    <a href="/main/login/register" class="register-btn">Register</a>
+
+    <!-- Forgot Password (Optional UI)
+    <div class="forgot-password">
+      <a href="#">Forgot Password?</a>
+    </div> -->
+
+    <!-- Social Login UI (Optional)
+    <div class="social">
+      <div class="go"><i class="fab fa-google"></i> Google</div>
+      <div class="fb"><i class="fab fa-facebook-f"></i> Facebook</div>
+    </div> -->
+
+    <!-- Error or Success Message -->
+    <% if (message) { %>
+      <div id="message" class="message <%= message.type %>"><%= message.text %></div>
+    <% } %>
+  </form>
+</body>
+</html>
